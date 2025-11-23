@@ -2,27 +2,113 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <title>Bluetooth Attendance System (Static)</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Your Project</title>
 
-    <!-- CSS המאוחד -->
+    <!-- CSS -->
     <link rel="stylesheet" href="styles.css" />
-
-    <!-- Tailwind -->
-    <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- Theme icons optional -->
-    <link rel="icon" href="favicon.ico" />
   </head>
 
-  <body class="min-h-screen bg-background text-foreground antialiased">
-    <div id="app"></div>
+  <body>
+    <div class="app">
 
-    <!-- הקבצים המאוחדים שלך -->
-    <script type="module" src="config-all.txt"></script>
-    <script type="module" src="package-and-entry.txt"></script>
-    <script type="module" src="ui-small-1.tsx"></script>
-    <script type="module" src="ui-small-2.tsx"></script>
-    <script type="module" src="ui-main.tsx"></script>
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <div class="sidebar-header">
+          <h2>Menu</h2>
+          <button id="sidebarToggle" class="icon-button" title="Collapse sidebar">
+            ☰
+          </button>
+        </div>
+
+        <nav class="sidebar-nav">
+          <div class="sidebar-section">
+            <div class="sidebar-title">Navigation</div>
+            <button class="sidebar-item active">Dashboard</button>
+            <button class="sidebar-item">Reports</button>
+            <button class="sidebar-item">Settings</button>
+          </div>
+
+          <div class="sidebar-section">
+            <div class="sidebar-title">Shortcuts</div>
+            <button class="sidebar-item">New Session</button>
+            <button class="sidebar-item">Export Data</button>
+          </div>
+        </nav>
+      </aside>
+
+      <!-- Main content -->
+      <div class="main">
+
+        <!-- Top bar -->
+        <header class="topbar">
+          <h1 class="topbar-title">Bluetooth Attendance System</h1>
+          <span class="topbar-subtitle">Static demo for GitHub Pages</span>
+        </header>
+
+        <!-- Content -->
+        <main class="content">
+          <section class="card">
+            <h2 class="card-title">Session Controls</h2>
+
+            <div class="field">
+              <label for="sessionName">Session name</label>
+              <input id="sessionName" type="text" placeholder="e.g. Data Science - Lecture 4" />
+            </div>
+
+            <div class="field">
+              <label for="deviceSelect">Bluetooth device</label>
+              <select id="deviceSelect">
+                <option value="none">Select device...</option>
+                <option value="classroom-1">Classroom Beacon #1</option>
+                <option value="classroom-2">Classroom Beacon #2</option>
+                <option value="hall-a">Hall A Receiver</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="radiusRange">
+                Detection radius
+                <span id="radiusValue" class="field-value">10 m</span>
+              </label>
+              <input id="radiusRange" type="range" min="5" max="30" value="10" />
+            </div>
+
+            <div class="buttons-row">
+              <button id="startSessionBtn" class="primary-button">
+                Start session
+              </button>
+              <button id="endSessionBtn" class="secondary-button">
+                End session
+              </button>
+            </div>
+          </section>
+
+          <section class="card">
+            <h2 class="card-title">Recent attendance</h2>
+
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Student</th>
+                  <th>ID</th>
+                  <th>Status</th>
+                  <th>Time</th>
+                </tr>
+              </thead>
+              <tbody id="attendanceTableBody">
+                <!-- ימולא ע"י JS -->
+              </tbody>
+            </table>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <!-- Toast container -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <!-- JS -->
+    <script src="script.js"></script>
   </body>
 </html>
